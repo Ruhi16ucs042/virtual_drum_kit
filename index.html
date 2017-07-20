@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtul Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+                   
+
+  <div class="keys" >
+    <div data-key="65" id='drum1' class="key a">   
+      <kbd><img src="img/clapping.png" class="image"></kbd>
+        <span class="sound">A</span>
+    </div>
+    <div data-key="83" id='drum2' class="key s">
+      <kbd><img src="img/cymbals.png" class="image"></kbd>
+      <span class="sound">S</span>
+    </div>
+    <div data-key="68" id='drum3' class="key a">
+      <kbd><kbd><img src="img/drum.png" class="image"></kbd>
+      <span class="sound">D</span>
+    </div>
+    <div data-key="70" id='drum4' class="key s">
+      <kbd><img src="img/cymbals_1.png" class="image"></kbd>
+      <span class="sound">F</span>
+    </div>
+    <div data-key="71" id='drum5' class="key a">
+      <kbd><img src="img/drum_1.png" class="image"></kbd>
+      <span class="sound">G</span>
+    </div>
+    <div data-key="72" id='drum6' class="key s">
+      <kbd><img src="img/cymbals_2.png" class="image"></kbd>
+      <span class="sound">H</span>
+    </div>
+    <div data-key="74" id='drum7' class="key a">
+      <kbd><img src="img/snare.png" class="image"></kbd>
+      <span class="sound">J</span>
+    </div>
+    <div data-key="75" id='drum8' class="key s">
+      <kbd><img src="img/drum_2.png" class="image"></kbd>
+      <span class="sound">K</span>
+    </div>
+    <div data-key="76" id='drum9' class="key a">
+      <kbd><img src="img/drumsticks.png" class="image"></kbd>
+      <span class="sound">L</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+  
+   <script src="jquery.js">
+   </script>
+   <script >
+   
+        $('#drum1').on('click',function(){
+		$('#drum1').addClass('playing');
+		audio = "sounds/clap.wav"
+		document.querySelector('audio').play();
+		});
+		
+		 $('#drum2').on('click',function(){
+		 $('#drum2').addClass('playing');
+		 audio = "sounds/hihat.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		 $('#drum3').on('click',function(){
+		 $('#drum3').addClass('playing');
+		 audio = "sounds/kick.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		 $('#drum4').on('click',function(){
+		 $('#drum4').addClass('playing');
+		 audio = "sounds/openhat.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		 $('#drum5').on('click',function(){
+		 $('#drum5').addClass('playing');
+		 audio = "sounds/boom.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		 $('#drum6').on('click',function(){
+		 $('#drum6').addClass('playing');
+		 audio = "sounds/ride.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		 $('#drum7').on('click',function(){
+		 $('#drum7').addClass('playing');
+		 audio = "sounds/snare.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		 $('#drum8').on('click',function(){
+		 $('#drum8').addClass('playing');
+		 audio = "sounds/tom.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		 $('#drum9').on('click',function(){
+		 $('#drum9').addClass('playing');
+		 audio = "sounds/tink.wav"
+		 document.querySelector('audio').play();
+		});
+		
+		
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+</script>
+
+
+</body>
+</html>
